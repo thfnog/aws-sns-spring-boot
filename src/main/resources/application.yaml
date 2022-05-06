@@ -1,0 +1,32 @@
+server:
+  port: ${SERVER_PORT:9090}
+  servlet:
+    context-path: /api-aws-integration/v1
+logging:
+  level:
+    root: ${ROOT_LOG_LEVEL:info}
+
+  pattern:
+    console: "[%thread][%highlight(%-5level)][%cyan(%d{yyyy-MM-dd HH:mm:ss})][%yellow(%X{requestId})][%magenta(%logger{40})] - %msg%n"
+
+spring:
+  application:
+    name: api-aws-integration
+  main:
+    allow-bean-definition-overriding: true
+  devtools:
+    add-properties: ${SPRING_DEV_TOOLS:true}
+  profiles:
+    active: ${SPRING_ACTIVE_PROFILE:local}
+
+#
+# Amazon SNS Topic
+#
+aws:
+  sns:
+    region: us-east-2
+    arn: arn:aws:sns:us-east-2:000000000000
+    notification:
+      endpoint: https://d1b8-2804-431-cfcd-8af0-b47c-2136-619a-72dc.ngrok.io/api-aws-integration/v1/topic-subscriber
+      # use ngrok for generate an external url: https://dashboard.ngrok.com/get-started/setup
+  temporary-credentials-validity-duration:
