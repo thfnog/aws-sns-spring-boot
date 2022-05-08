@@ -29,14 +29,13 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class AmazonSNSIntegrationServiceImpl implements SNSService {
 
-  private static final String HTTPS = "https";
-  private static final String TOPIC_DEFAULT = "topic-subscriber";
-
   private final AmazonSNS amazonSNS;
   private final MessageError messageError;
 
   private final String snsArn;
   private final String snsNotificationEndpoint;
+  private final String protocol;
+  private final String topicDefault;
 
   /*
     Different ways to run method after startup in spring boot
@@ -44,13 +43,13 @@ public class AmazonSNSIntegrationServiceImpl implements SNSService {
    */
   @PostConstruct
   private void subscribe() {
-    subscribe(TOPIC_DEFAULT);
+    subscribe(topicDefault);
   }
 
   @Override
   public String subscribe(String topic) {
     SubscribeRequest request = new SubscribeRequest();
-    request.setProtocol(HTTPS);
+    request.setProtocol(protocol);
     request.setEndpoint(snsNotificationEndpoint);
     request.setReturnSubscriptionArn(true);
 
@@ -71,9 +70,10 @@ public class AmazonSNSIntegrationServiceImpl implements SNSService {
   }
 
   @Override
-  public void publish(Notification notification) {
+  public void publish(Notification notification, String topic) {
+    log.info("Sending message to sns topic: {}", topic);
     try {
-      String topicArn = snsArn + ":" + notification.getTopic();
+      String topicArn = snsArn + ":" + topic;
       PublishRequest publishRequest = new PublishRequest(
           topicArn, notification.getBody(),
           notification.getSubject());

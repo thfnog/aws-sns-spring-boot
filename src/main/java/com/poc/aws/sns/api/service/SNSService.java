@@ -17,5 +17,5 @@ public interface SNSService {
 
   List<GetTopicResponse> getTopics();
 
-  void publish(Notification notification);
+  void publish(Notification notification, String topic);
 }

@@ -23,10 +23,13 @@ spring:
 # Amazon SNS Topic
 #
 aws:
+  env: local
   sns:
     region: us-east-2
     arn: arn:aws:sns:us-east-2:000000000000
     notification:
+      topic-default: topic-subscriber
+      protocol: https
       endpoint: https://d1b8-2804-431-cfcd-8af0-b47c-2136-619a-72dc.ngrok.io/api-aws-integration/v1/topic-subscriber
-      # use ngrok for generate an external url: https://dashboard.ngrok.com/get-started/setup
+      # use ngrok to generate an external url: https://dashboard.ngrok.com/get-started/setup
   temporary-credentials-validity-duration:

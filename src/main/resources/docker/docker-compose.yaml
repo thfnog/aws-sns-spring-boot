@@ -1,15 +1,17 @@
 version: "3"
 
 services:
+  # https://docs.localstack.cloud/localstack/configuration/
   localstack:
     image: localstack/localstack:0.14.2
     ports:
       - '4566-4583:4566-4583'
       - '8080:8080'
     environment:
-      - SERVICES=s3
+      - SERVICES=sns
       - DEBUG=true
-      - DEFAULT_REGION=us-east-1
+      - USE_SINGLE_REGION=1
+      - DEFAULT_REGION=us-east-2
       - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
       - "./target/localstack:/tmp/localstack"

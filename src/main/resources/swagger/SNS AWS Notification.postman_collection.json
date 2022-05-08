@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "2e06e782-dc83-4844-ba23-9fde3c076f71",
+		"name": "SNS AWS Notification",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/topic-subscriber/subscribe/{topic}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api-aws-integration/v1/topic-subscriber/subscribes/topic-3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api-aws-integration",
+						"v1",
+						"topic-subscriber",
+						"subscribes",
+						"topic-3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/topic-subscriber/subscribe/{topic}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api-aws-integration/v1/topic-subscriber/subscribes/topic-subscriber",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api-aws-integration",
+						"v1",
+						"topic-subscriber",
+						"subscribes",
+						"topic-subscriber"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/topics/message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"subject\": \"Teste de mensagem\",\n    \"body\": \"Corpo da mensagem\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api-aws-integration/v1/topics/topic-3/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api-aws-integration",
+						"v1",
+						"topics",
+						"topic-3",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/topics",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"topic-3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api-aws-integration/v1/topics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api-aws-integration",
+						"v1",
+						"topics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/topics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api-aws-integration/v1/topics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api-aws-integration",
+						"v1",
+						"topics"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

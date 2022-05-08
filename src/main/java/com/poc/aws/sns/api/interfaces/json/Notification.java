@@ -13,6 +13,5 @@ public class Notification {
 
     private String subject;
     private String body;
-    private String topic;
 
 }
